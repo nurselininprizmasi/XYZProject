@@ -26,7 +26,6 @@ Ext.define('XYZPro.view.WindowAdresEkleViewController', {
     },
 
     onCmbIlSelect: function(combo, record, eOpts) {
-        debugger;
         var cmbIlce = Ext.ComponentQuery.query("#cmbIlce")[0];
         cmbIlce.clearValue();
         cmbIlce.getStore().load({
@@ -39,7 +38,8 @@ Ext.define('XYZPro.view.WindowAdresEkleViewController', {
     onBtnAdresKaydetClick: function(button, e, eOpts) {
         var form = Ext.ComponentQuery.query('#adresFormPanel')[0];
         var kisiId = Ext.ComponentQuery.query('#kisiId')[0];
-        debugger;
+        var gridAdres = Ext.ComponentQuery.query('#gridAdresPanel')[0];
+
         Ext.Ajax.request({
             url: 'kisi/saveOrUpdateAdresBilgileri.ajax',
 
@@ -50,7 +50,11 @@ Ext.define('XYZPro.view.WindowAdresEkleViewController', {
             },
 
             success: function(response, opts) {
-
+                gridAdres.getStore().load({
+                    params:{
+                        'kisiId':kisiId.getValue()
+                    }
+                });
 
             },
 

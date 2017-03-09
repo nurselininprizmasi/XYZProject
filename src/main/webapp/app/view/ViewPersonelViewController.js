@@ -74,7 +74,6 @@ Ext.define('XYZPro.view.ViewPersonelViewController', {
     onGridKisiPanelRowDblClick: function(tableview, record, tr, rowIndex, e, eOpts) {
         var windowYoneticiAta = Ext.create('XYZPro.view.WindowYoneticiAta',{});
         var kisiId = Ext.ComponentQuery.query('#lblKisiId')[0];
-        debugger;
         kisiId.setValue(record.data.ID);
 
         windowYoneticiAta.show();
