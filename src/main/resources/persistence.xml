@@ -4,12 +4,9 @@
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.xyz.model.Kullanici</class>
-        <class>com.xyz.model.KullaniciRol</class>
-        <class>com.xyz.model.Rol</class>
         <class>com.xyz.model.Adres</class>
         <class>com.xyz.model.Birim</class>
         <class>com.xyz.model.Kisi</class>
-        <class>com.xyz.model.KisiBirim</class>
         <class>com.xyz.model.Konum</class>
         <class>com.xyz.model.Tanim</class>
         <properties>

@@ -112,10 +112,13 @@ Ext.define('XYZPro.view.ViewPersonelViewController', {
     },
 
     onBtnTemizleClick: function(button, e, eOpts) {
+        debugger;
         var form = Ext.ComponentQuery.query('#kisiBilgiFormPanel')[0];
         form.getForm().reset();
         var grid = Ext.ComponentQuery.query('#gridKisiPanel')[0];
         grid.getStore().load();
+        var gridAdres = Ext.ComponentQuery.query('#gridAdresPanel')[0];
+        gridAdres.getStore().loadData([],false);
     },
 
     onBtnAdresEkleClick: function(button, e, eOpts) {
@@ -191,7 +194,7 @@ Ext.define('XYZPro.view.ViewPersonelViewController', {
         });
     },
 
-    onBtnTemizleClick: function(button, e, eOpts) {
+    onBtnAraTemizleClick: function(button, e, eOpts) {
         var form = Ext.ComponentQuery.query('#aramaFormPanel')[0];
         form.getForm().reset();
     },

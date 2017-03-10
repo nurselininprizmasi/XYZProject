@@ -444,10 +444,10 @@ Ext.define('XYZPro.view.ViewPersonel', {
                         },
                         {
                             xtype: 'button',
-                            itemId: 'btnTemizle',
+                            itemId: 'btnAraTemizle',
                             text: 'Temizle',
                             listeners: {
-                                click: 'onBtnTemizleClick'
+                                click: 'onBtnAraTemizleClick'
                             }
                         }
                     ]
