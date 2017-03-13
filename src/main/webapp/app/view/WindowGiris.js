@@ -75,11 +75,6 @@ Ext.define('XYZPro.view.WindowGiris', {
                             listeners: {
                                 click: 'onBtnGirisClick'
                             }
-                        },
-                        {
-                            xtype: 'button',
-                            itemId: 'btnIptal',
-                            text: 'İptal'
                         }
                     ]
                 }
@@ -89,25 +84,33 @@ Ext.define('XYZPro.view.WindowGiris', {
 
     onBtnGirisClick: function(button, e, eOpts) {
 
-        //Giriş Başarılı
         var successCallBack = function(resp,ops){
 
-         var panel = Ext.ComponentQuery.query('#mainPanel')[0];
-         panel.setActiveItem(1);
+        var json = Ext.JSON.decode(resp.responseText);
 
-         var winPanel = Ext.ComponentQuery.query('#windowGiris')[0];
-         winPanel.hide();
+            debugger;
+            //Giriş Başarılı
+            if(json.success == true){
+
+                var panel = Ext.ComponentQuery.query('#mainPanel')[0];
+                panel.setActiveItem(1);
+
+                var winPanel = Ext.ComponentQuery.query('#windowGiris')[0];
+                winPanel.hide();
+            }
+            //Giriş Başarısız
+            else{
+                Ext.Msg.alert("HATA","Kullanıcı Adı / Şifre Uyumsuz",resp);
+                return;
+            }
+
         };
 
-        //Giriş Başarısız
-        var failureCallBack = function(resp,ops){
 
-            Ext.Msg.alert("HATA","Kullanıcı Adı / Şifre Uyumsuz",resp);
 
-        };
 
-         var kullanici=Ext.ComponentQuery.query('#txtKullaniciAdi')[0].getValue();
-         var sifre=Ext.ComponentQuery.query('#txtSifre')[0].getValue();
+        var kullanici=Ext.ComponentQuery.query('#txtKullaniciAdi')[0].getValue();
+        var sifre=Ext.ComponentQuery.query('#txtSifre')[0].getValue();
 
 
         if(kullanici == "" || sifre == "")
@@ -115,22 +118,19 @@ Ext.define('XYZPro.view.WindowGiris', {
             Ext.toast("Kullanıcı Adı ve ya Şifre alanı boş olamaz!");
             return;
         }
-
         Ext.Ajax.request
-            ({
-                url: '/kullanici/kullaniciKontrol.ajax',
-                params:
-                {
-                    kullaniciAdi:kullanici,
-                    sifre:sifre
-                },
-                success: successCallBack,
-                failure: failureCallBack
+        ({
+            url: '/kullanici/kullaniciKontrol.ajax',
+            params:
+            {
+                kullaniciAdi:kullanici,
+                sifre:sifre
+            },
+            success: successCallBack
 
 
-            }) ;
+        }) ;
 
-        successCallBack();
 
     }
 

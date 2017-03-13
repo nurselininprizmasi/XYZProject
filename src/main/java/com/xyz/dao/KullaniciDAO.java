@@ -21,16 +21,20 @@ public class KullaniciDAO implements IKullaniciDAO {
         sql.append("Select k.sifre FROM Kullanici k WHERE k.kullaniciAdi =:kullaniciAdi");
         Query query = em.createQuery(sql.toString());
         query.setParameter("kullaniciAdi", kullaniciAdi);
+        if (query.getResultList().size()>0) {
+            String dbSifre = (String) query.getResultList().get(0);
+            if (dbSifre.equals(sifre)) {
 
-        String dbSifre = (String) query.getResultList().get(0);
-        if (dbSifre.equals(sifre)) {
+                return true;
 
-            return true;
+            } else {
 
-        }else{
-
+                return false;
+            }
+        } else {
             return false;
         }
+
 
     }
 }

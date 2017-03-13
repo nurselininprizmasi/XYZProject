@@ -1,6 +1,7 @@
 package com.xyz.controller;
 
 import com.xyz.bus.IKullaniciBUS;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,12 @@ public class KullaniciController {
     IKullaniciBUS kullaniciBUS;
 
     @RequestMapping("/kullaniciKontrol.ajax")
-    public Boolean kullaniciKontrol(HttpServletRequest request, HttpServletResponse response){
+    public JSONObject kullaniciKontrol(HttpServletRequest request, HttpServletResponse response){
+        JSONObject json = new JSONObject();
         String kullaniciAdi = request.getParameter("kullaniciAdi");
         String sifre = request.getParameter("sifre");
-
-        return kullaniciBUS.getKullaniciKontrol(kullaniciAdi,sifre);
+        json.put("success",kullaniciBUS.getKullaniciKontrol(kullaniciAdi,sifre));
+        return json;
 
     }
 
